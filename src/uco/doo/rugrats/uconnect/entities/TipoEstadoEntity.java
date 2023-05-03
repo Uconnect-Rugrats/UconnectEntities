@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class TipoEstadoEntity {
+public final class TipoEstadoEntity {
     private UUID identificador;
     private String nombre;
     private String descripcion;
@@ -37,15 +37,15 @@ public class TipoEstadoEntity {
 
 
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setNombre(String nombre) {
+    private void setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
     }
     
-    private void setDescripcion(String descripcion) {
+    private void setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
     }
     

@@ -8,7 +8,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class EventoEntity {
+public final class EventoEntity {
     private UUID identificador;
     private AgendaEntity agenda;
     private String nombre;
@@ -46,39 +46,39 @@ public class EventoEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setAgenda(AgendaEntity agenda) {
+    private void setAgenda(final AgendaEntity agenda) {
         this.agenda = UtilObject.getDefault(agenda, AgendaEntity.getDefaultObject());
     }
 
-    private void setNombre(String nombre) {
+    private void setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
     }
 
-    private void setDescripcion(String descripcion) {
+    private void setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
     }
 
-    private void setLugar(String lugar) {
+    private void setLugar(final String lugar) {
         this.lugar = UtilText.applyTrim(lugar);
     }
 
-    private void setOrganizador(EstructuraAdministradorEstructuraEntity organizador) {
+    private void setOrganizador(final EstructuraAdministradorEstructuraEntity organizador) {
         this.organizador = UtilObject.getDefault(organizador, EstructuraAdministradorEstructuraEntity.getDefaultObject());
     }
 
-    private void setTipo(TipoEventoEntity tipo) {
+    private void setTipo(final TipoEventoEntity tipo) {
         this.tipo = UtilObject.getDefault(tipo, TipoEventoEntity.getDefaultObject());
     }
 
-    private void setFechaEjecucion(LocalDateTime fechaEjecucion) {
+    private void setFechaEjecucion(final LocalDateTime fechaEjecucion) {
         this.fechaEjecucion = UtilDate.getDefault(fechaEjecucion);
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

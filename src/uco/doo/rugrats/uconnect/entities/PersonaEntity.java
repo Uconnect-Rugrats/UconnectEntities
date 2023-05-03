@@ -6,7 +6,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class PersonaEntity {
+public final class PersonaEntity {
     private UUID identificador;
     private TipoIdentificacionEntity tipoIdentificacion;
     private String numeroIdentificacion;
@@ -50,15 +50,15 @@ public class PersonaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setTipoIdentificacion(TipoIdentificacionEntity tipoIdentificacion) {
+    private void setTipoIdentificacion(final TipoIdentificacionEntity tipoIdentificacion) {
         this.tipoIdentificacion = UtilObject.getDefault(tipoIdentificacion, TipoIdentificacionEntity.getDefaultObject());
     }
 
-    private void setNumeroIdentificacion(String numeroIdentificacion) {
+    private void setNumeroIdentificacion(final String numeroIdentificacion) {
         this.numeroIdentificacion = UtilText.numericIsValid(UtilText.applyTrim(numeroIdentificacion)) ? UtilText.applyTrim(numeroIdentificacion) : UtilText.getDefaultNumeric();
     }
 
@@ -78,19 +78,19 @@ public class PersonaEntity {
         this.segundoApellido = UtilText.applyTrim(segundoApellido);
     }
 
-    private void setCorreo(String correo) {
+    private void setCorreo(final String correo) {
         this.correo = UtilText.emailIsvalid(UtilText.applyTrim(correo)) ? UtilText.applyTrim(correo) : UtilText.getDefaultEmailAdress();
     }
 
-    private void setPaisTelefono(PaisEntity paisTelefono) {
+    private void setPaisTelefono(final PaisEntity paisTelefono) {
         this.paisTelefono = UtilObject.getDefault(paisTelefono, PaisEntity.getDefaultObject());
     }
 
-    private void setNumeroTelefono(String numeroTelefono) {
+    private void setNumeroTelefono(final String numeroTelefono) {
         this.numeroTelefono = UtilText.numericIsValid(UtilText.applyTrim(numeroTelefono)) ? UtilText.applyTrim(numeroTelefono) : UtilText.getDefaultNumeric();
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

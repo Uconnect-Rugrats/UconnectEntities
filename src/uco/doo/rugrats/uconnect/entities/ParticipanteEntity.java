@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class ParticipanteEntity {
+public final class ParticipanteEntity {
     private UUID identificador;
     private PersonaEntity persona;
     private EstadoEntity estado;
@@ -26,15 +26,15 @@ public class ParticipanteEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setPersona(PersonaEntity persona) {
+    private void setPersona(final PersonaEntity persona) {
         this.persona = UtilObject.getDefault(persona, PersonaEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

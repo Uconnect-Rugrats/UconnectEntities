@@ -8,7 +8,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class MensajeEntity {
+public final class MensajeEntity {
     private UUID identificador;
     private ChatEntity chat;
     private ParticipanteGrupoEntity autor;
@@ -37,11 +37,11 @@ public class MensajeEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setChat(ChatEntity chat) {
+    private void setChat(final ChatEntity chat) {
         this.chat = UtilObject.getDefault(chat, ChatEntity.getDefaultObject());
     }
 

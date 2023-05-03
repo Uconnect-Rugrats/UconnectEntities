@@ -8,7 +8,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class RespuestaReporteMensajeEntity {
+public final class RespuestaReporteMensajeEntity {
     private UUID identificador;
     private LocalDateTime fechaRespuesta;
     private ReporteMensajeEntity reporte;
@@ -38,27 +38,27 @@ public class RespuestaReporteMensajeEntity {
         setAdministrador(administrador);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setFechaRespuesta(LocalDateTime fechaRespuesta) {
+    private void setFechaRespuesta(final LocalDateTime fechaRespuesta) {
         this.fechaRespuesta = UtilDate.getDefault(fechaRespuesta);
     }
 
-    private void setReporte(ReporteMensajeEntity reporte) {
+    private void setReporte(final ReporteMensajeEntity reporte) {
         this.reporte = UtilObject.getDefault(reporte, ReporteMensajeEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 
-    private void setExplicacionVeredicto(String explicacionVeredicto) {
+    private void setExplicacionVeredicto(final String explicacionVeredicto) {
         this.explicacionVeredicto = UtilText.applyTrim(explicacionVeredicto);
     }
 
-    private void setAdministrador(EstructuraAdministradorEstructuraEntity administrador) {
+    private void setAdministrador(final EstructuraAdministradorEstructuraEntity administrador) {
         this.administrador = UtilObject.getDefault(administrador, EstructuraAdministradorEstructuraEntity.getDefaultObject());
     }
 

@@ -8,7 +8,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ComentarioEntity {
+public final class ComentarioEntity {
     private UUID identificador;
     private PublicacionEntity publicacion;
     private ComentarioEntity comentarioPadre;
@@ -41,27 +41,27 @@ public class ComentarioEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setPublicacion(PublicacionEntity publicacion) {
+    private void setPublicacion(final PublicacionEntity publicacion) {
         this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.getDefaultObject());
     }
 
-    private void setComentarioPadre(ComentarioEntity comentarioPadre) {
+    private void setComentarioPadre(final ComentarioEntity comentarioPadre) {
         this.comentarioPadre = UtilObject.getDefault(comentarioPadre, ComentarioEntity.getDefaultObject());
     }
 
-    private void setFechaPublicacion(LocalDateTime fechaPublicacion) {
+    private void setFechaPublicacion(final LocalDateTime fechaPublicacion) {
         this.fechaPublicacion = UtilDate.getDefault(fechaPublicacion);
     }
 
-    private void setAutor(ParticipanteGrupoEntity autor) {
+    private void setAutor(final ParticipanteGrupoEntity autor) {
         this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
     }
 
-    private void setContenido(String contenido) {
+    private void setContenido(final String contenido) {
         this.contenido = UtilText.applyTrim(contenido);
     }
 
