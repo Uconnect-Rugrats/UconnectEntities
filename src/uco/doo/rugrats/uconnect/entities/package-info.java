@@ -1,1 +1,1 @@
-package uco.doo.rugrats.uconnect.entities;
+package uco.doo.rugrats.uconnect.dto;

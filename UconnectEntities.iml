@@ -7,5 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="module" module-name="UconnectCrosscutting1" />
+>>>>>>> bb47c2fa95e38695891433b82e9ae251c9b5e258
   </component>
 </module>
