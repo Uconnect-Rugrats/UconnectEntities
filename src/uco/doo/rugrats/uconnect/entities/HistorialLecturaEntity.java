@@ -7,7 +7,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class HistorialLecturaEntity {
+public final class HistorialLecturaEntity {
     private UUID identificador;
     private GrupoEntity grupo;
     private ParticipanteGrupoEntity lector;
@@ -36,27 +36,27 @@ public class HistorialLecturaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setGrupo(GrupoEntity grupo) {
+    private void setGrupo(final GrupoEntity grupo) {
         this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
     }
 
-    private void setLector(ParticipanteGrupoEntity lector) {
+    private void setLector(final ParticipanteGrupoEntity lector) {
         this.lector = UtilObject.getDefault(lector, ParticipanteGrupoEntity.getDefaultObject());
     }
 
-    private void setFechaLectura(LocalDateTime fechaLectura) {
+    private void setFechaLectura(final LocalDateTime fechaLectura) {
         this.fechaLectura = UtilDate.getDefault(fechaLectura);
     }
 
-    private void setMensaje(MensajeEntity mensaje) {
+    private void setMensaje(final MensajeEntity mensaje) {
         this.mensaje = UtilObject.getDefault(mensaje, MensajeEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

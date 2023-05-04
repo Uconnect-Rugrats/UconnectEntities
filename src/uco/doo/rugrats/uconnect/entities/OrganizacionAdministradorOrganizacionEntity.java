@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class OrganizacionAdministradorOrganizacionEntity {
+public final class OrganizacionAdministradorOrganizacionEntity {
     private UUID identificador;
     private AdministradorOrganizacionEntity administrador;
     private OrganizacionEntity organizacion;
@@ -27,19 +27,19 @@ public class OrganizacionAdministradorOrganizacionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setAdministrador(AdministradorOrganizacionEntity administrador) {
+    private void setAdministrador(final AdministradorOrganizacionEntity administrador) {
         this.administrador = UtilObject.getDefault(administrador, AdministradorOrganizacionEntity.getDefaultObject());
     }
 
-    private void setOrganizacion(OrganizacionEntity estructura) {
+    private void setOrganizacion(final OrganizacionEntity estructura) {
         this.organizacion = UtilObject.getDefault(estructura, OrganizacionEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

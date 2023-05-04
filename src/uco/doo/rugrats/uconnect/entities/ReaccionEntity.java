@@ -7,7 +7,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ReaccionEntity {
+public final class ReaccionEntity {
     private UUID identificador;
     private PublicacionEntity publicacion;
     private ParticipanteGrupoEntity autor;
@@ -36,27 +36,27 @@ public class ReaccionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setPublicacion(PublicacionEntity publicacion) {
+    private void setPublicacion(final PublicacionEntity publicacion) {
         this.publicacion = UtilObject.getDefault(publicacion,  PublicacionEntity.getDefaultObject());
     }
 
-    private void setAutor(ParticipanteGrupoEntity autor) {
+    private void setAutor(final ParticipanteGrupoEntity autor) {
         this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
     }
 
-    private void setFechaReaccion(LocalDateTime fechaReaccion) {
+    private void setFechaReaccion(final LocalDateTime fechaReaccion) {
         this.fechaReaccion = UtilDate.getDefault(fechaReaccion);
     }
 
-    private void setTipo(TipoReaccionEntity tipo) {
+    private void setTipo(final TipoReaccionEntity tipo) {
         this.tipo = UtilObject.getDefault(tipo, TipoReaccionEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

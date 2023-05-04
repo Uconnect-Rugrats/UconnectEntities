@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class TipoEventoEntity {
+public final class TipoEventoEntity {
     private UUID identificador;
     private String nombre;
     private String descripcion;
@@ -37,11 +37,11 @@ public class TipoEventoEntity {
 
 
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setNombre(String nombre) {
+    private void setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
     }
 

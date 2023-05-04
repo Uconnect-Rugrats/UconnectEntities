@@ -7,7 +7,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class AgendaEntity {
+public final class AgendaEntity {
     private UUID identificador;
     private GrupoEntity grupo;
     private LocalDateTime fechaInicio;
@@ -33,23 +33,23 @@ public class AgendaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setGrupo(GrupoEntity grupo) {
+    private void setGrupo(final GrupoEntity grupo) {
         this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
     }
 
-    private void setFechaInicio(LocalDateTime fechaInicio) {
+    private void setFechaInicio(final LocalDateTime fechaInicio) {
         this.fechaInicio = UtilDate.getDefault(fechaInicio);
     }
 
-    private void setFechaFin(LocalDateTime fechaFin) {
+    private void setFechaFin(final LocalDateTime fechaFin) {
         this.fechaFin = UtilDate.getDefault(fechaFin);
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class AdministradorOrganizacionEntity {
+public final class AdministradorOrganizacionEntity {
     private UUID identificador;
     private PersonaEntity persona;
 
@@ -22,11 +22,11 @@ public class AdministradorOrganizacionEntity {
         setPersona(persona);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setPersona(PersonaEntity persona) {
+    private void setPersona(final PersonaEntity persona) {
         this.persona = UtilObject.getDefault(persona, PersonaEntity.getDefaultObject());
     }
 

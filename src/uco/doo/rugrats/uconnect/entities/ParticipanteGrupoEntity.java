@@ -6,7 +6,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class ParticipanteGrupoEntity {
+public final class ParticipanteGrupoEntity {
     private UUID identificador;
     private ParticipanteEntity participante;
     private GrupoEntity grupo;
@@ -32,23 +32,23 @@ public class ParticipanteGrupoEntity {
         setEstado(estado);
     }
 
-    private void setPuedePublicar(Boolean puedePublicar) {
+    private void setPuedePublicar(final Boolean puedePublicar) {
         this.puedePublicar = UtilBoolean.getDefault(puedePublicar);
     }
 
-    private void setIdentificador(UUID identificador) {
+    private void setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
     }
 
-    private void setParticipante(ParticipanteEntity participante) {
+    private void setParticipante(final ParticipanteEntity participante) {
         this.participante = UtilObject.getDefault(participante, ParticipanteEntity.getDefaultObject());
     }
 
-    private void setGrupo(GrupoEntity grupo) {
+    private void setGrupo(final GrupoEntity grupo) {
         this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
     }
 
-    private void setEstado(EstadoEntity estado) {
+    private void setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
     }
 

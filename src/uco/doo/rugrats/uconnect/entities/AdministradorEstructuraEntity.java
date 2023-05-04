@@ -5,7 +5,7 @@ import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
 import java.util.UUID;
 
-public class AdministradorEstructuraEntity {
+public final class AdministradorEstructuraEntity {
     private UUID identificador;
     private PersonaEntity persona;
     public static final AdministradorEstructuraEntity DEFAULT_OBJECT = new AdministradorEstructuraEntity();
