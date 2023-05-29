@@ -16,16 +16,15 @@ public final class RespuestaReporteMensajeEntity {
     private String explicacionVeredicto;
     private EstructuraAdministradorEstructuraEntity administrador;
 
-    public static final RespuestaReporteMensajeEntity DEFAULT_OBJECT = new RespuestaReporteMensajeEntity();
 
     private RespuestaReporteMensajeEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setFechaRespuesta(UtilDate.getDefaultValue());
-        setReporte(ReporteMensajeEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setReporte(ReporteMensajeEntity.create());
+        setEstado(EstadoEntity.create());
         setExplicacionVeredicto(UtilText.getDefaultValue());
-        setAdministrador(EstructuraAdministradorEstructuraEntity.getDefaultObject());
+        setAdministrador(EstructuraAdministradorEstructuraEntity.create());
     }
 
     public RespuestaReporteMensajeEntity(final UUID identificador, final LocalDateTime fechaRespuesta, final ReporteMensajeEntity reporte, final EstadoEntity estado, final String explicacionVeredicto, final EstructuraAdministradorEstructuraEntity administrador) {
@@ -38,28 +37,34 @@ public final class RespuestaReporteMensajeEntity {
         setAdministrador(administrador);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public RespuestaReporteMensajeEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setFechaRespuesta(final LocalDateTime fechaRespuesta) {
+    public RespuestaReporteMensajeEntity setFechaRespuesta(final LocalDateTime fechaRespuesta) {
         this.fechaRespuesta = UtilDate.getDefault(fechaRespuesta);
+        return this;
     }
 
-    private void setReporte(final ReporteMensajeEntity reporte) {
-        this.reporte = UtilObject.getDefault(reporte, ReporteMensajeEntity.getDefaultObject());
+    public RespuestaReporteMensajeEntity setReporte(final ReporteMensajeEntity reporte) {
+        this.reporte = UtilObject.getDefault(reporte, ReporteMensajeEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public RespuestaReporteMensajeEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
-    private void setExplicacionVeredicto(final String explicacionVeredicto) {
+    public RespuestaReporteMensajeEntity setExplicacionVeredicto(final String explicacionVeredicto) {
         this.explicacionVeredicto = UtilText.applyTrim(explicacionVeredicto);
+        return this;
     }
 
-    private void setAdministrador(final EstructuraAdministradorEstructuraEntity administrador) {
-        this.administrador = UtilObject.getDefault(administrador, EstructuraAdministradorEstructuraEntity.getDefaultObject());
+    public RespuestaReporteMensajeEntity setAdministrador(final EstructuraAdministradorEstructuraEntity administrador) {
+        this.administrador = UtilObject.getDefault(administrador, EstructuraAdministradorEstructuraEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -86,7 +91,7 @@ public final class RespuestaReporteMensajeEntity {
         return administrador;
     }
 
-    public static final RespuestaReporteMensajeEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final RespuestaReporteMensajeEntity create(){
+        return new RespuestaReporteMensajeEntity();
     }
 }

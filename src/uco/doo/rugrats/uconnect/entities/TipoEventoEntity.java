@@ -10,7 +10,6 @@ public final class TipoEventoEntity {
     private String nombre;
     private String descripcion;
 
-    public static final TipoEventoEntity DEFAULT_OBJECT = new TipoEventoEntity();
     private TipoEventoEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
@@ -37,21 +36,24 @@ public final class TipoEventoEntity {
 
 
 
-    private void setIdentificador(final UUID identificador) {
+    public TipoEventoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public TipoEventoEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(String descripcion) {
+    public TipoEventoEntity setDescripcion(String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
 
-    public static TipoEventoEntity getDefaultObject() {
-        return DEFAULT_OBJECT;
+    public static TipoEventoEntity create() {
+        return new TipoEventoEntity();
     }
 
 }

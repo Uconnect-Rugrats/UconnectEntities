@@ -19,18 +19,17 @@ public final class EventoEntity {
     private LocalDateTime fechaEjecucion;
     private EstadoEntity estado;
 
-    public static final EventoEntity DEFAULT_OBJECT = new EventoEntity();
     private EventoEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setAgenda(AgendaEntity.getDefaultObject());
+        setAgenda(AgendaEntity.create());
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
         setLugar(UtilText.getDefaultValue());
-        setOrganizador(EstructuraAdministradorEstructuraEntity.getDefaultObject());
-        setTipo(TipoEventoEntity.getDefaultObject());
+        setOrganizador(EstructuraAdministradorEstructuraEntity.create());
+        setTipo(TipoEventoEntity.create());
         setFechaEjecucion(UtilDate.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public EventoEntity(final UUID identificador, final AgendaEntity agenda, final String nombre, final String descripcion, String lugar, final EstructuraAdministradorEstructuraEntity organizador, final TipoEventoEntity tipo, final LocalDateTime fechaEjecucion, final EstadoEntity estado) {
@@ -46,40 +45,49 @@ public final class EventoEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public EventoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setAgenda(final AgendaEntity agenda) {
-        this.agenda = UtilObject.getDefault(agenda, AgendaEntity.getDefaultObject());
+    public EventoEntity setAgenda(final AgendaEntity agenda) {
+        this.agenda = UtilObject.getDefault(agenda, AgendaEntity.create());
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public EventoEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public EventoEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
-    private void setLugar(final String lugar) {
+    public EventoEntity setLugar(final String lugar) {
         this.lugar = UtilText.applyTrim(lugar);
+        return this;
     }
 
-    private void setOrganizador(final EstructuraAdministradorEstructuraEntity organizador) {
-        this.organizador = UtilObject.getDefault(organizador, EstructuraAdministradorEstructuraEntity.getDefaultObject());
+    public EventoEntity setOrganizador(final EstructuraAdministradorEstructuraEntity organizador) {
+        this.organizador = UtilObject.getDefault(organizador, EstructuraAdministradorEstructuraEntity.create());
+        return this;
     }
 
-    private void setTipo(final TipoEventoEntity tipo) {
-        this.tipo = UtilObject.getDefault(tipo, TipoEventoEntity.getDefaultObject());
+    public EventoEntity setTipo(final TipoEventoEntity tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoEventoEntity.create());
+        return this;
     }
 
-    private void setFechaEjecucion(final LocalDateTime fechaEjecucion) {
+    public EventoEntity setFechaEjecucion(final LocalDateTime fechaEjecucion) {
         this.fechaEjecucion = UtilDate.getDefault(fechaEjecucion);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public EventoEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -118,7 +126,7 @@ public final class EventoEntity {
         return estado;
     }
 
-    public static final EventoEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final EventoEntity create(){
+        return new EventoEntity();
     }
 }

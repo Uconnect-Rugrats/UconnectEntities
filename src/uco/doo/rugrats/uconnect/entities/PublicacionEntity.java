@@ -17,17 +17,16 @@ public final class PublicacionEntity {
     private String contenido;
     private EstadoEntity estado;
 
-    public static final PublicacionEntity DEFAULT_OBJECT = new PublicacionEntity();
 
     private PublicacionEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setGrupo(GrupoEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
+        setGrupo(GrupoEntity.create());
+        setAutor(ParticipanteGrupoEntity.create());
         setFechaPublicacion(UtilDate.getDefaultValue());
         setTitulo(UtilText.getDefaultValue());
         setContenido(UtilText.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public PublicacionEntity(final UUID identificador, final GrupoEntity grupo, final ParticipanteGrupoEntity autor, final LocalDateTime fechaPublicacion, final String titulo, final String contenido, final EstadoEntity estado) {
@@ -41,32 +40,39 @@ public final class PublicacionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public PublicacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
+    public PublicacionEntity setGrupo(final GrupoEntity grupo) {
+        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public PublicacionEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setFechaPublicacion(final LocalDateTime fechaPublicacion) {
+    public PublicacionEntity setFechaPublicacion(final LocalDateTime fechaPublicacion) {
         this.fechaPublicacion = UtilDate.getDefault(fechaPublicacion);
+        return this;
     }
 
-    private void setTitulo(final String titulo) {
+    public PublicacionEntity setTitulo(final String titulo) {
         this.titulo = UtilText.applyTrim(titulo);
+        return this;
     }
 
-    private void setContenido(final String contenido) {
+    public PublicacionEntity setContenido(final String contenido) {
         this.contenido = UtilText.applyTrim(contenido);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public PublicacionEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -97,7 +103,7 @@ public final class PublicacionEntity {
         return estado;
     }
 
-    public static final PublicacionEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final PublicacionEntity create(){
+        return new PublicacionEntity();
     }
 }

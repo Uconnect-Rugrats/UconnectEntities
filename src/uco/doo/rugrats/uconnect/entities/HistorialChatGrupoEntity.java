@@ -13,12 +13,11 @@ public final class HistorialChatGrupoEntity {
     private ParticipanteGrupoEntity participante;
     private LocalDateTime fechaIngreso;
 
-    public static final HistorialChatGrupoEntity DEFAULT_OBJECT = new HistorialChatGrupoEntity();
     private HistorialChatGrupoEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setChat(ChatEntity.getDefaultObject());
-        setParticipante(ParticipanteGrupoEntity.getDefaultObject());
+        setChat(ChatEntity.create());
+        setParticipante(ParticipanteGrupoEntity.create());
         setFechaIngreso(UtilDate.getDefaultValue());
     }
 
@@ -30,20 +29,24 @@ public final class HistorialChatGrupoEntity {
         setFechaIngreso(fechaIngreso);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public HistorialChatGrupoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setChat(final ChatEntity chat) {
-        this.chat = UtilObject.getDefault(chat, ChatEntity.getDefaultObject());
+    public HistorialChatGrupoEntity setChat(final ChatEntity chat) {
+        this.chat = UtilObject.getDefault(chat, ChatEntity.create());
+        return this;
     }
 
-    public void setParticipante(final ParticipanteGrupoEntity participante) {
-        this.participante = UtilObject.getDefault(participante, ParticipanteGrupoEntity.getDefaultObject());
+    public HistorialChatGrupoEntity setParticipante(final ParticipanteGrupoEntity participante) {
+        this.participante = UtilObject.getDefault(participante, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setFechaIngreso(final LocalDateTime fechaIngreso) {
+    public HistorialChatGrupoEntity setFechaIngreso(final LocalDateTime fechaIngreso) {
         this.fechaIngreso = UtilDate.getDefault(fechaIngreso);
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -62,7 +65,7 @@ public final class HistorialChatGrupoEntity {
         return fechaIngreso;
     }
 
-    public static final HistorialChatGrupoEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final HistorialChatGrupoEntity create(){
+        return new HistorialChatGrupoEntity();
     }
 }

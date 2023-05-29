@@ -1,5 +1,6 @@
 package uco.doo.rugrats.uconnect.entities;
 
+import uco.doo.rugrats.uconnect.utils.UtilBoolean;
 import uco.doo.rugrats.uconnect.utils.UtilDate;
 import uco.doo.rugrats.uconnect.utils.UtilObject;
 import uco.doo.rugrats.uconnect.utils.UtilText;
@@ -16,21 +17,26 @@ public final class ComentarioEntity {
     private ParticipanteGrupoEntity autor;
     private String contenido;
     private EstadoEntity estado;
+    private boolean tienePadre;
+    private static final String UUID_PADRE = "";
+    private static final ComentarioEntity PADRE = new ComentarioEntity(UtilUUID.generateUUIDFromString(UUID_PADRE),PublicacionEntity.create(),null,UtilDate.getDefaultValue(),ParticipanteGrupoEntity.create(),UtilText.getDefaultValue(),EstadoEntity.create(),UtilBoolean.getDefaultValue());
+
 
     public static final ComentarioEntity DEFAULT_OBJECT = new ComentarioEntity();
 
     private ComentarioEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setPublicacion(PublicacionEntity.getDefaultObject());
-        setComentarioPadre(null); // PROBLEMA
+        setPublicacion(PublicacionEntity.create());
+        setComentarioPadre(PADRE);
         setFechaPublicacion(UtilDate.getDefaultValue());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
+        setAutor(ParticipanteGrupoEntity.create());
         setContenido(UtilText.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
+        setTienePadre(UtilBoolean.getDefaultValue());
     }
 
-    public ComentarioEntity(final UUID identificador, final PublicacionEntity publicacion, final ComentarioEntity comentarioPadre, final LocalDateTime fechaPublicacion, final ParticipanteGrupoEntity autor, final String contenido, final EstadoEntity estado) {
+    public ComentarioEntity( UUID identificador, PublicacionEntity publicacion, ComentarioEntity comentarioPadre, LocalDateTime fechaPublicacion, ParticipanteGrupoEntity autor, String contenido, EstadoEntity estado, boolean tienePadre) {
         super();
         setIdentificador(identificador);
         setPublicacion(publicacion);
@@ -39,34 +45,57 @@ public final class ComentarioEntity {
         setAutor(autor);
         setContenido(contenido);
         setEstado(estado);
+        setTienePadre(tienePadre);
     }
+    
 
-    private void setIdentificador(final UUID identificador) {
+    public final boolean isTienePadre() {
+		return tienePadre;
+	}
+
+	public final ComentarioEntity setTienePadre(boolean tienePadre) {
+		this.tienePadre = UtilBoolean.getDefault(tienePadre);
+		return this;
+	}
+
+	public ComentarioEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setPublicacion(final PublicacionEntity publicacion) {
-        this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.getDefaultObject());
+	public ComentarioEntity setPublicacion(final PublicacionEntity publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.create());
+        return this;
     }
 
-    private void setComentarioPadre(final ComentarioEntity comentarioPadre) {
-        this.comentarioPadre = UtilObject.getDefault(comentarioPadre, ComentarioEntity.getDefaultObject());
+	public ComentarioEntity setComentarioPadre(final ComentarioEntity comentarioPadre) {
+        if(isTienePadre()) {
+            this.comentarioPadre = UtilObject.getDefault(comentarioPadre, ComentarioEntity.create());
+        }else {
+            this.comentarioPadre = PADRE;
+
+        }
+    	return this;
     }
 
-    private void setFechaPublicacion(final LocalDateTime fechaPublicacion) {
+	public ComentarioEntity setFechaPublicacion(final LocalDateTime fechaPublicacion) {
         this.fechaPublicacion = UtilDate.getDefault(fechaPublicacion);
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+	public ComentarioEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setContenido(final String contenido) {
+	public ComentarioEntity setContenido(final String contenido) {
         this.contenido = UtilText.applyTrim(contenido);
+        return this;
     }
 
-    private void setEstado(EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+	public ComentarioEntity setEstado(EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -97,7 +126,7 @@ public final class ComentarioEntity {
         return estado;
     }
 
-    public static final ComentarioEntity getDefaultObject(){
+    public static final ComentarioEntity create(){
         return DEFAULT_OBJECT;
     }
 }

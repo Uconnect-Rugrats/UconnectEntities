@@ -10,7 +10,6 @@ public final class TipoOrganizacionEntity {
     private String nombre;
     private String descripcion;
 
-    public static final TipoOrganizacionEntity DEFAULT_OBJECT = new TipoOrganizacionEntity();
     private TipoOrganizacionEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
@@ -37,21 +36,24 @@ public final class TipoOrganizacionEntity {
 
 
 
-    private void setIdentificador(final UUID identificador) {
+    public TipoOrganizacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public TipoOrganizacionEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public TipoOrganizacionEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
 
-    public static TipoOrganizacionEntity getDefaultObject() {
-        return DEFAULT_OBJECT;
+    public static TipoOrganizacionEntity create() {
+        return new TipoOrganizacionEntity();
     }
 
 }

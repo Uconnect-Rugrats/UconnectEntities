@@ -15,15 +15,14 @@ public final class ReporteComentarioEntity {
     private LocalDateTime fechaAcusacion;
     private EstadoEntity estado;
 
-    public static final ReporteComentarioEntity DEFAULT_OBJECT = new ReporteComentarioEntity();
     private ReporteComentarioEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setComentario(ComentarioEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
-        setCausa(CausaReporteEntity.getDefaultObject());
+        setComentario(ComentarioEntity.create());
+        setAutor(ParticipanteGrupoEntity.create());
+        setCausa(CausaReporteEntity.create());
         setFechaAcusacion(UtilDate.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public ReporteComentarioEntity(final UUID identificador, final ComentarioEntity comentario, final ParticipanteGrupoEntity autor, final CausaReporteEntity causa, final LocalDateTime fechaAcusacion, final EstadoEntity estado) {
@@ -36,28 +35,34 @@ public final class ReporteComentarioEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ReporteComentarioEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setComentario(final ComentarioEntity comentario) {
-        this.comentario = UtilObject.getDefault(comentario, ComentarioEntity.getDefaultObject());
+    public ReporteComentarioEntity setComentario(final ComentarioEntity comentario) {
+        this.comentario = UtilObject.getDefault(comentario, ComentarioEntity.create());
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public ReporteComentarioEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setCausa(final CausaReporteEntity causa) {
-        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.getDefaultObject());
+    public ReporteComentarioEntity setCausa(final CausaReporteEntity causa) {
+        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.create());
+        return this;
     }
 
-    private void setFechaAcusacion(final LocalDateTime fechaAcusacion) {
+    public ReporteComentarioEntity setFechaAcusacion(final LocalDateTime fechaAcusacion) {
         this.fechaAcusacion = UtilDate.getDefault(fechaAcusacion);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ReporteComentarioEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -84,7 +89,7 @@ public final class ReporteComentarioEntity {
         return estado;
     }
 
-    public static final ReporteComentarioEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final ReporteComentarioEntity create(){
+        return new ReporteComentarioEntity();
     }
 }

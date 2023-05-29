@@ -12,13 +12,12 @@ public final class GrupoEntity {
     private String nombre;
     private EstadoEntity estado;
 
-    public static final GrupoEntity DEFAULT_OBJECT = new GrupoEntity();
     private GrupoEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setEstructura(EstructuraEntity.getDefaultObject());
+        setEstructura(EstructuraEntity.create());
         setNombre(UtilText.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public GrupoEntity(final UUID identificador, final EstructuraEntity estructura, final String nombre, final EstadoEntity estado) {
@@ -29,20 +28,24 @@ public final class GrupoEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public GrupoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setEstructura(final EstructuraEntity estructura) {
-        this.estructura = UtilObject.getDefault(estructura, EstructuraEntity.getDefaultObject());
+    public GrupoEntity setEstructura(final EstructuraEntity estructura) {
+        this.estructura = UtilObject.getDefault(estructura, EstructuraEntity.create());
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public GrupoEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public GrupoEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -61,7 +64,7 @@ public final class GrupoEntity {
         return estado;
     }
 
-    public static GrupoEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static GrupoEntity create(){
+        return new GrupoEntity();
     }
 }

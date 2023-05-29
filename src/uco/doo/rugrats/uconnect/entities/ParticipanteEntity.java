@@ -10,13 +10,12 @@ public final class ParticipanteEntity {
     private PersonaEntity persona;
     private EstadoEntity estado;
 
-    public static final ParticipanteEntity DEFAULT_OBJECT = new ParticipanteEntity();
 
     private ParticipanteEntity(){
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setPersona(PersonaEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setPersona(PersonaEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public ParticipanteEntity(final UUID identificador, final PersonaEntity persona, final EstadoEntity estado){
@@ -26,16 +25,19 @@ public final class ParticipanteEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ParticipanteEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setPersona(final PersonaEntity persona) {
-        this.persona = UtilObject.getDefault(persona, PersonaEntity.getDefaultObject());
+    public ParticipanteEntity setPersona(final PersonaEntity persona) {
+        this.persona = UtilObject.getDefault(persona, PersonaEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ParticipanteEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -50,7 +52,7 @@ public final class ParticipanteEntity {
         return estado;
     }
 
-    public static ParticipanteEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static ParticipanteEntity create(){
+        return new ParticipanteEntity();
     }
 }

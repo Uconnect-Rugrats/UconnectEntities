@@ -19,20 +19,19 @@ public final class PersonaEntity {
     private String numeroTelefono;
     private EstadoEntity estado;
 
-    public static final PersonaEntity DEFAULT_OBJECT = new PersonaEntity();
     private PersonaEntity(){
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setTipoIdentificacion(TipoIdentificacionEntity.getDefaultObject());
+        setTipoIdentificacion(TipoIdentificacionEntity.create());
         setNumeroIdentificacion(UtilText.getDefaultNumeric());
         setPrimerNombre(UtilText.getDefaultValue());
         setSegundoNombre(UtilText.getDefaultValue());
         setPrimerApellido(UtilText.getDefaultValue());
         setSegundoApellido(UtilText.getDefaultValue());
         setCorreo(UtilText.getDefaultEmailAdress());
-        setPaisTelefono(PaisEntity.getDefaultObject());
+        setPaisTelefono(PaisEntity.create());
         setNumeroTelefono(UtilText.getDefaultNumeric());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public PersonaEntity(final UUID identificador, final TipoIdentificacionEntity tipoIdentificacion, final String numeroIdentificacion, final String primerNombre, final String segundoNombre, final String primerApellido, final String segundoApellido, final String correo, final PaisEntity paisTelefono, final String numeroTelefono, final EstadoEntity estado) {
@@ -50,48 +49,59 @@ public final class PersonaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public PersonaEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setTipoIdentificacion(final TipoIdentificacionEntity tipoIdentificacion) {
-        this.tipoIdentificacion = UtilObject.getDefault(tipoIdentificacion, TipoIdentificacionEntity.getDefaultObject());
+    public PersonaEntity setTipoIdentificacion(final TipoIdentificacionEntity tipoIdentificacion) {
+        this.tipoIdentificacion = UtilObject.getDefault(tipoIdentificacion, TipoIdentificacionEntity.create());
+        return this;
     }
 
-    private void setNumeroIdentificacion(final String numeroIdentificacion) {
-        this.numeroIdentificacion = UtilText.numericIsValid(UtilText.applyTrim(numeroIdentificacion)) ? UtilText.applyTrim(numeroIdentificacion) : UtilText.getDefaultNumeric();
+    public PersonaEntity setNumeroIdentificacion(final String numeroIdentificacion) {
+        this.numeroIdentificacion = UtilText.getUtilText().numericIsValid(UtilText.applyTrim(numeroIdentificacion)) ? UtilText.applyTrim(numeroIdentificacion) : UtilText.getDefaultNumeric();
+        return this;
     }
 
-    private void setPrimerNombre(String primerNombre) {
+    public PersonaEntity setPrimerNombre(String primerNombre) {
         this.primerNombre = UtilText.applyTrim(primerNombre);
+        return this;
     }
 
-    private void setSegundoNombre(String segundoNombre) {
+    public PersonaEntity setSegundoNombre(String segundoNombre) {
         this.segundoNombre = UtilText.applyTrim(segundoNombre);
+        return this;
     }
 
-    private void setPrimerApellido(String primerApellido) {
+    public PersonaEntity setPrimerApellido(String primerApellido) {
         this.primerApellido = UtilText.applyTrim(primerApellido);
+        return this;
     }
 
-    private void setSegundoApellido(String segundoApellido) {
+    public PersonaEntity setSegundoApellido(String segundoApellido) {
         this.segundoApellido = UtilText.applyTrim(segundoApellido);
+        return this;
     }
 
-    private void setCorreo(final String correo) {
-        this.correo = UtilText.emailIsvalid(UtilText.applyTrim(correo)) ? UtilText.applyTrim(correo) : UtilText.getDefaultEmailAdress();
+    public PersonaEntity setCorreo(final String correo) {
+        this.correo = UtilText.getUtilText().emailIsvalid(UtilText.applyTrim(correo)) ? UtilText.applyTrim(correo) : UtilText.getDefaultEmailAdress();
+        return this;
+ }
+
+    public PersonaEntity setPaisTelefono(final PaisEntity paisTelefono) {
+        this.paisTelefono = UtilObject.getDefault(paisTelefono, PaisEntity.create());
+        return this;
     }
 
-    private void setPaisTelefono(final PaisEntity paisTelefono) {
-        this.paisTelefono = UtilObject.getDefault(paisTelefono, PaisEntity.getDefaultObject());
+    public PersonaEntity setNumeroTelefono(final String numeroTelefono) {
+        this.numeroTelefono = UtilText.getUtilText().numericIsValid(UtilText.applyTrim(numeroTelefono)) ? UtilText.applyTrim(numeroTelefono) : UtilText.getDefaultNumeric();
+        return this;
     }
 
-    private void setNumeroTelefono(final String numeroTelefono) {
-        this.numeroTelefono = UtilText.numericIsValid(UtilText.applyTrim(numeroTelefono)) ? UtilText.applyTrim(numeroTelefono) : UtilText.getDefaultNumeric();
-    }
-
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public PersonaEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -138,7 +148,7 @@ public final class PersonaEntity {
         return estado;
     }
 
-    public static PersonaEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static PersonaEntity create(){
+        return new PersonaEntity();
     }
 }

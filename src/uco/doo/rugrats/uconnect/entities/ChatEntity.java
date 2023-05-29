@@ -10,13 +10,11 @@ public final class ChatEntity {
     private GrupoEntity grupo;
     private EstadoEntity estado;
 
-    public static final ChatEntity DEFAULT_OBJECT = new ChatEntity();
-
     private ChatEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setGrupo(GrupoEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setGrupo(GrupoEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public ChatEntity(final UUID identificador, final GrupoEntity grupo, final EstadoEntity estado) {
@@ -26,16 +24,19 @@ public final class ChatEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ChatEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
+    public ChatEntity setGrupo(final GrupoEntity grupo) {
+        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ChatEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -50,7 +51,7 @@ public final class ChatEntity {
         return estado;
     }
 
-    public static ChatEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static ChatEntity create(){
+        return new ChatEntity();
     }
 }

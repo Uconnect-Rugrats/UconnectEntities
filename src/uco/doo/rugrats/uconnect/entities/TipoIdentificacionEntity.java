@@ -10,7 +10,6 @@ public final class TipoIdentificacionEntity {
     private String nombre;
     private String indicador;
 
-    public static final TipoIdentificacionEntity DEFAULT_OBJECT = new TipoIdentificacionEntity();
     private TipoIdentificacionEntity(){
         super();
         setIdentificador(UtilUUID.getDefaultValue());
@@ -25,16 +24,19 @@ public final class TipoIdentificacionEntity {
         setIndicador(indicador);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public TipoIdentificacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public TipoIdentificacionEntity setNombre(final String nombre) {
         this.nombre = UtilText.getDefault(nombre);
+        return this;
     }
 
-    private void setIndicador(final String indicador) {
-        this.indicador = UtilText.numericIsValid(UtilText.applyTrim(indicador)) ? UtilText.applyTrim(indicador) : UtilText.getDefaultNumeric();
+    public TipoIdentificacionEntity setIndicador(final String indicador) {
+        this.indicador = UtilText.getUtilText().numericIsValid(UtilText.applyTrim(indicador)) ? UtilText.applyTrim(indicador) : UtilText.getDefaultNumeric();
+        return this;
     }
 
     public String getNombre() {
@@ -49,8 +51,8 @@ public final class TipoIdentificacionEntity {
         return indicador;
     }
 
-    public static TipoIdentificacionEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static TipoIdentificacionEntity create(){
+        return new TipoIdentificacionEntity();
     }
 
 }

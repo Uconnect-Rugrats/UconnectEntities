@@ -10,7 +10,6 @@ public final class TipoReaccionEntity {
     private String nombre;
     private String descripcion;
 
-    public static final TipoReaccionEntity DEFAULT_OBJECT = new TipoReaccionEntity();
     private TipoReaccionEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
@@ -37,21 +36,24 @@ public final class TipoReaccionEntity {
 
 
 
-    private void setIdentificador(final UUID identificador) {
+    public TipoReaccionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public TipoReaccionEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public TipoReaccionEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
 
-    public static TipoReaccionEntity getDefaultObject() {
-        return DEFAULT_OBJECT;
+    public static TipoReaccionEntity create() {
+        return new TipoReaccionEntity();
     }
 
 }

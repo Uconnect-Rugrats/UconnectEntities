@@ -14,15 +14,14 @@ public final class ReporteMensajeEntity {
     private CausaReporteEntity causa;
     private LocalDateTime fechaAcusacion;
     private EstadoEntity estado;
-    public static final ReporteMensajeEntity DEFAULT_OBJECT = new ReporteMensajeEntity();
     private ReporteMensajeEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setMensaje(MensajeEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
-        setCausa(CausaReporteEntity.getDefaultObject());
+        setAutor(ParticipanteGrupoEntity.create());
+        setCausa(CausaReporteEntity.create());
         setFechaAcusacion(UtilDate.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public ReporteMensajeEntity(final UUID identificador, final MensajeEntity mensaje, final ParticipanteGrupoEntity autor, final CausaReporteEntity causa, final LocalDateTime fechaAcusacion, final EstadoEntity estado) {
@@ -35,28 +34,34 @@ public final class ReporteMensajeEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ReporteMensajeEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setMensaje(final MensajeEntity mensaje) {
+    public ReporteMensajeEntity setMensaje(final MensajeEntity mensaje) {
         this.mensaje = UtilObject.getDefault(mensaje, MensajeEntity.getDefaultObject());
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public ReporteMensajeEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setCausa(final CausaReporteEntity causa) {
-        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.getDefaultObject());
+    public ReporteMensajeEntity setCausa(final CausaReporteEntity causa) {
+        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.create());
+        return this;
     }
 
-    private void setFechaAcusacion(final LocalDateTime fechaAcusacion) {
+    public ReporteMensajeEntity setFechaAcusacion(final LocalDateTime fechaAcusacion) {
         this.fechaAcusacion = UtilDate.getDefault(fechaAcusacion);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ReporteMensajeEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -83,7 +88,7 @@ public final class ReporteMensajeEntity {
         return estado;
     }
 
-    public static final ReporteMensajeEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final ReporteMensajeEntity create(){
+        return new ReporteMensajeEntity();
     }
 }

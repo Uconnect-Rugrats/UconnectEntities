@@ -12,12 +12,11 @@ public final class EstructuraAdministradorEstructuraEntity {
     private EstructuraEntity estructura;
     private EstadoEntity estado;
 
-    public static final EstructuraAdministradorEstructuraEntity DEFAULT_OBJECT = new EstructuraAdministradorEstructuraEntity();
     private EstructuraAdministradorEstructuraEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
-        setAdministrador(AdministradorEstructuraEntity.getDefaultObject());
-        setEstructura(EstructuraEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setAdministrador(AdministradorEstructuraEntity.create());
+        setEstructura(EstructuraEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public EstructuraAdministradorEstructuraEntity(final UUID identificador, final AdministradorEstructuraEntity administrador, final EstructuraEntity estructura, final EstadoEntity estado) {
@@ -28,20 +27,24 @@ public final class EstructuraAdministradorEstructuraEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public EstructuraAdministradorEstructuraEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setAdministrador(final AdministradorEstructuraEntity administrador) {
-        this.administrador = UtilObject.getDefault(administrador, AdministradorEstructuraEntity.getDefaultObject());
+    public EstructuraAdministradorEstructuraEntity setAdministrador(final AdministradorEstructuraEntity administrador) {
+        this.administrador = UtilObject.getDefault(administrador, AdministradorEstructuraEntity.create());
+        return this;
     }
 
-    private void setEstructura(final EstructuraEntity estructura) {
-        this.estructura = UtilObject.getDefault(estructura, EstructuraEntity.getDefaultObject());
+    public EstructuraAdministradorEstructuraEntity setEstructura(final EstructuraEntity estructura) {
+        this.estructura = UtilObject.getDefault(estructura, EstructuraEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public EstructuraAdministradorEstructuraEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -60,7 +63,7 @@ public final class EstructuraAdministradorEstructuraEntity {
         return estado;
     }
 
-    public static EstructuraAdministradorEstructuraEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static EstructuraAdministradorEstructuraEntity create(){
+        return new EstructuraAdministradorEstructuraEntity();
     }
 }

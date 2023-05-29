@@ -13,14 +13,13 @@ public final class OrganizacionEntity {
     private TipoOrganizacionEntity tipo;
     private EstadoEntity estado;
 
-    public static final OrganizacionEntity DEFAULT_OBJECT = new OrganizacionEntity();
 
     private OrganizacionEntity(){
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
-        setTipo(TipoOrganizacionEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setTipo(TipoOrganizacionEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public OrganizacionEntity(final UUID identificador, final String nombre, final String descripcion, final TipoOrganizacionEntity tipo, final EstadoEntity estado) {
@@ -31,24 +30,29 @@ public final class OrganizacionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public OrganizacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public OrganizacionEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public OrganizacionEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
-    private void setTipo(final TipoOrganizacionEntity tipo) {
-        this.tipo = UtilObject.getDefault(tipo, TipoOrganizacionEntity.getDefaultObject());
+    public OrganizacionEntity setTipo(final TipoOrganizacionEntity tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoOrganizacionEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public OrganizacionEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -71,7 +75,7 @@ public final class OrganizacionEntity {
         return estado;
     }
 
-    public static OrganizacionEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static OrganizacionEntity create(){
+        return new OrganizacionEntity();
     }
 }

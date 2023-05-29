@@ -13,14 +13,13 @@ public final class ParticipanteGrupoEntity {
     private Boolean puedePublicar;
     private EstadoEntity estado;
 
-    public static final ParticipanteGrupoEntity DEFAULT_OBJECT = new ParticipanteGrupoEntity();
 
     private ParticipanteGrupoEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
-        setParticipante(ParticipanteEntity.getDefaultObject());
+        setParticipante(ParticipanteEntity.create());
         setPuedePublicar(UtilBoolean.getDefaultValue());
-        setGrupo(GrupoEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setGrupo(GrupoEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public ParticipanteGrupoEntity(final UUID identificador, final ParticipanteEntity participante, final Boolean puedePublicar, final GrupoEntity grupo, final EstadoEntity estado) {
@@ -32,24 +31,29 @@ public final class ParticipanteGrupoEntity {
         setEstado(estado);
     }
 
-    private void setPuedePublicar(final Boolean puedePublicar) {
+    private ParticipanteGrupoEntity setPuedePublicar(final Boolean puedePublicar) {
         this.puedePublicar = UtilBoolean.getDefault(puedePublicar);
+        return this;
     }
 
-    private void setIdentificador(final UUID identificador) {
+    private ParticipanteGrupoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setParticipante(final ParticipanteEntity participante) {
-        this.participante = UtilObject.getDefault(participante, ParticipanteEntity.getDefaultObject());
+    private ParticipanteGrupoEntity setParticipante(final ParticipanteEntity participante) {
+        this.participante = UtilObject.getDefault(participante, ParticipanteEntity.create());
+        return this;
     }
 
-    private void setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
+    private ParticipanteGrupoEntity setGrupo(final GrupoEntity grupo) {
+        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    private ParticipanteGrupoEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public Boolean getPuedePublicar() {
@@ -72,7 +76,7 @@ public final class ParticipanteGrupoEntity {
         return estado;
     }
 
-    public static ParticipanteGrupoEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static ParticipanteGrupoEntity create(){
+        return new ParticipanteGrupoEntity();
     }
 }

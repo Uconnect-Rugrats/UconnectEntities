@@ -15,15 +15,14 @@ public final class ReportePublicacionEntity {
     private LocalDateTime fechaAcusacion;
     private EstadoEntity estado;
 
-    public static final ReportePublicacionEntity DEFAULT_OBJECT = new ReportePublicacionEntity();
     private ReportePublicacionEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setPublicacion(PublicacionEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
-        setCausa(CausaReporteEntity.getDefaultObject());
+        setPublicacion(PublicacionEntity.create());
+        setAutor(ParticipanteGrupoEntity.create());
+        setCausa(CausaReporteEntity.create());
         setFechaAcusacion(UtilDate.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public ReportePublicacionEntity(final UUID identificador, final PublicacionEntity publicacion, final ParticipanteGrupoEntity autor, final CausaReporteEntity causa, final LocalDateTime fechaAcusacion, final EstadoEntity estado) {
@@ -36,28 +35,34 @@ public final class ReportePublicacionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ReportePublicacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setPublicacion(final PublicacionEntity publicacion) {
-        this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.getDefaultObject());
+    public ReportePublicacionEntity setPublicacion(final PublicacionEntity publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion, PublicacionEntity.create());
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public ReportePublicacionEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setCausa(final CausaReporteEntity causa) {
-        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.getDefaultObject());
+    public ReportePublicacionEntity setCausa(final CausaReporteEntity causa) {
+        this.causa = UtilObject.getDefault(causa, CausaReporteEntity.create());
+        return this;
     }
 
-    private void setFechaAcusacion(final LocalDateTime fechaAcusacion) {
+    public ReportePublicacionEntity setFechaAcusacion(final LocalDateTime fechaAcusacion) {
         this.fechaAcusacion = UtilDate.getDefault(fechaAcusacion);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ReportePublicacionEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -84,7 +89,7 @@ public final class ReportePublicacionEntity {
         return estado;
     }
 
-    public static final ReportePublicacionEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final ReportePublicacionEntity create(){
+        return new ReportePublicacionEntity();
     }
 }

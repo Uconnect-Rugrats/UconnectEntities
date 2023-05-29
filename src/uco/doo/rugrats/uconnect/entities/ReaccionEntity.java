@@ -15,15 +15,14 @@ public final class ReaccionEntity {
     private TipoReaccionEntity tipo;
     private EstadoEntity estado;
 
-    public static final ReaccionEntity DEFAULT_OBJECT = new ReaccionEntity();
     private ReaccionEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setPublicacion(PublicacionEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
+        setPublicacion(PublicacionEntity.create());
+        setAutor(ParticipanteGrupoEntity.create());
         setFechaReaccion(UtilDate.getDefaultValue());
-        setTipo(TipoReaccionEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setTipo(TipoReaccionEntity.create());
+        setEstado(EstadoEntity.create());
     }
 
     public ReaccionEntity(final UUID identificador, final PublicacionEntity publicacion, final ParticipanteGrupoEntity autor, final LocalDateTime fechaReaccion, final TipoReaccionEntity tipo, final EstadoEntity estado) {
@@ -36,28 +35,34 @@ public final class ReaccionEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public ReaccionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setPublicacion(final PublicacionEntity publicacion) {
-        this.publicacion = UtilObject.getDefault(publicacion,  PublicacionEntity.getDefaultObject());
+    public ReaccionEntity setPublicacion(final PublicacionEntity publicacion) {
+        this.publicacion = UtilObject.getDefault(publicacion,  PublicacionEntity.create());
+        return this;
     }
 
-    private void setAutor(final ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public ReaccionEntity setAutor(final ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setFechaReaccion(final LocalDateTime fechaReaccion) {
+    public ReaccionEntity setFechaReaccion(final LocalDateTime fechaReaccion) {
         this.fechaReaccion = UtilDate.getDefault(fechaReaccion);
+        return this;
     }
 
-    private void setTipo(final TipoReaccionEntity tipo) {
-        this.tipo = UtilObject.getDefault(tipo, TipoReaccionEntity.getDefaultObject());
+    public ReaccionEntity setTipo(final TipoReaccionEntity tipo) {
+        this.tipo = UtilObject.getDefault(tipo, TipoReaccionEntity.create());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public ReaccionEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -84,7 +89,7 @@ public final class ReaccionEntity {
         return estado;
     }
 
-    public static final ReaccionEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static final ReaccionEntity create(){
+        return new ReaccionEntity();
     }
 }

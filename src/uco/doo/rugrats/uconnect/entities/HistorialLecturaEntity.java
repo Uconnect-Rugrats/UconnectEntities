@@ -15,15 +15,14 @@ public final class HistorialLecturaEntity {
     private MensajeEntity mensaje;
     private EstadoEntity estado;
 
-    public static final HistorialLecturaEntity DEFAULT_OBJECT = new HistorialLecturaEntity();
     private HistorialLecturaEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setGrupo(GrupoEntity.getDefaultObject());
-        setLector(ParticipanteGrupoEntity.getDefaultObject());
+        setGrupo(GrupoEntity.create());
+        setLector(ParticipanteGrupoEntity.create());
         setFechaLectura(UtilDate.getDefaultValue());
         setMensaje(MensajeEntity.getDefaultObject());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public HistorialLecturaEntity(final UUID identificador, final GrupoEntity grupo, final ParticipanteGrupoEntity lector, final LocalDateTime fechaLectura, final MensajeEntity mensaje, final EstadoEntity estado) {
@@ -36,28 +35,34 @@ public final class HistorialLecturaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public HistorialLecturaEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
+    public HistorialLecturaEntity setGrupo(final GrupoEntity grupo) {
+        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
+        return this;
     }
 
-    private void setLector(final ParticipanteGrupoEntity lector) {
-        this.lector = UtilObject.getDefault(lector, ParticipanteGrupoEntity.getDefaultObject());
+    public HistorialLecturaEntity setLector(final ParticipanteGrupoEntity lector) {
+        this.lector = UtilObject.getDefault(lector, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setFechaLectura(final LocalDateTime fechaLectura) {
+    public HistorialLecturaEntity setFechaLectura(final LocalDateTime fechaLectura) {
         this.fechaLectura = UtilDate.getDefault(fechaLectura);
+        return this;
     }
 
-    private void setMensaje(final MensajeEntity mensaje) {
+    public HistorialLecturaEntity setMensaje(final MensajeEntity mensaje) {
         this.mensaje = UtilObject.getDefault(mensaje, MensajeEntity.getDefaultObject());
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public HistorialLecturaEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -84,7 +89,7 @@ public final class HistorialLecturaEntity {
         return estado;
     }
 
-    public static HistorialLecturaEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static HistorialLecturaEntity create(){
+        return new HistorialLecturaEntity();
     }
 }

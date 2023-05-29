@@ -16,15 +16,14 @@ public final class MensajeEntity {
     private String contenido;
     private EstadoEntity estado;
 
-    public static final MensajeEntity DEFAULT_OBJECT = new MensajeEntity();
     public MensajeEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setChat(ChatEntity.getDefaultObject());
-        setAutor(ParticipanteGrupoEntity.getDefaultObject());
+        setChat(ChatEntity.create());
+        setAutor(ParticipanteGrupoEntity.create());
         setFechaEnviado(UtilDate.getDefaultValue());
         setContenido(UtilText.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public MensajeEntity(final UUID identificador, final ChatEntity chat, final ParticipanteGrupoEntity autor, final LocalDateTime fechaEnviado, final String contenido, final EstadoEntity estado) {
@@ -37,28 +36,34 @@ public final class MensajeEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public MensajeEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setChat(final ChatEntity chat) {
-        this.chat = UtilObject.getDefault(chat, ChatEntity.getDefaultObject());
+    public MensajeEntity setChat(final ChatEntity chat) {
+        this.chat = UtilObject.getDefault(chat, ChatEntity.create());
+        return this;
     }
 
-    private void setAutor(ParticipanteGrupoEntity autor) {
-        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.getDefaultObject());
+    public MensajeEntity setAutor(ParticipanteGrupoEntity autor) {
+        this.autor = UtilObject.getDefault(autor, ParticipanteGrupoEntity.create());
+        return this;
     }
 
-    private void setFechaEnviado(LocalDateTime fechaEnviado) {
+    public MensajeEntity setFechaEnviado(LocalDateTime fechaEnviado) {
         this.fechaEnviado = UtilDate.getDefault(fechaEnviado);
+        return this;
     }
 
-    private void setContenido(String contenido) {
+    public MensajeEntity setContenido(String contenido) {
         this.contenido = UtilText.applyTrim(contenido);
+        return this;
     }
 
-    private void setEstado(EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public MensajeEntity setEstado(EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -86,6 +91,6 @@ public final class MensajeEntity {
     }
 
     public static MensajeEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+        return new MensajeEntity();
     }
 }

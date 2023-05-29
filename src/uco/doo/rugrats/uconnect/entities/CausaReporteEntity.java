@@ -10,7 +10,6 @@ public final class CausaReporteEntity {
     private String nombre;
     private String descripcion;
 
-    public static final CausaReporteEntity DEFAULT_OBJECT = new CausaReporteEntity();
     private CausaReporteEntity() {
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
@@ -37,20 +36,23 @@ public final class CausaReporteEntity {
 
 
 
-    private void setIdentificador(final UUID identificador) {
+    public CausaReporteEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setNombre(final String nombre) {
+    public CausaReporteEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public CausaReporteEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
-    public static CausaReporteEntity getDefaultObject() {
-        return DEFAULT_OBJECT;
+    public static CausaReporteEntity create() {
+        return new CausaReporteEntity();
     }
 
 }

@@ -14,14 +14,13 @@ public final class AgendaEntity {
     private LocalDateTime fechaFin;
     private EstadoEntity estado;
 
-    public static final AgendaEntity DEFAULT_OBJECT = new AgendaEntity();
     private AgendaEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setGrupo(GrupoEntity.getDefaultObject());
+        setGrupo(GrupoEntity.create());
         setFechaInicio(UtilDate.getDefaultValue());
         setFechaFin(UtilDate.getDefaultValue());
-        setEstado(EstadoEntity.getDefaultObject());
+        setEstado(EstadoEntity.create());
     }
 
     public AgendaEntity(final UUID identificador, final GrupoEntity grupo, final LocalDateTime fechaInicio, final LocalDateTime fechaFin, final EstadoEntity estado) {
@@ -33,24 +32,29 @@ public final class AgendaEntity {
         setEstado(estado);
     }
 
-    private void setIdentificador(final UUID identificador) {
+    public AgendaEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private void setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.getDefaultObject());
+    public AgendaEntity setGrupo(final GrupoEntity grupo) {
+        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
+        return this;
     }
 
-    private void setFechaInicio(final LocalDateTime fechaInicio) {
+    public AgendaEntity setFechaInicio(final LocalDateTime fechaInicio) {
         this.fechaInicio = UtilDate.getDefault(fechaInicio);
+        return this;
     }
 
-    private void setFechaFin(final LocalDateTime fechaFin) {
+    public AgendaEntity setFechaFin(final LocalDateTime fechaFin) {
         this.fechaFin = UtilDate.getDefault(fechaFin);
+        return this;
     }
 
-    private void setEstado(final EstadoEntity estado) {
-        this.estado = UtilObject.getDefault(estado, EstadoEntity.getDefaultObject());
+    public AgendaEntity setEstado(final EstadoEntity estado) {
+        this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
+        return this;
     }
 
     public UUID getIdentificador() {
@@ -73,7 +77,7 @@ public final class AgendaEntity {
         return estado;
     }
 
-    public static AgendaEntity getDefaultObject(){
-        return DEFAULT_OBJECT;
+    public static AgendaEntity create(){
+        return new AgendaEntity();
     }
 }

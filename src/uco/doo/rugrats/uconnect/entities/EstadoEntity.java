@@ -15,13 +15,12 @@ public final class EstadoEntity {
     private String descripcion;
     private TipoEstadoEntity tipoEstado;
 
-    public static final EstadoEntity DEFAULT_OBJECT = new EstadoEntity();
     private EstadoEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
         setNombre(UtilText.getDefaultValue());
         setDescripcion(UtilText.getDefaultValue());
-        setTipoEstado(TipoEstadoEntity.getDefaultObject());
+        setTipoEstado(TipoEstadoEntity.create());
     }
 
 
@@ -33,24 +32,28 @@ public final class EstadoEntity {
         setTipoEstado(tipoEstado);
     }
 
-    private final void setIdentificador(final UUID identificador) {
+    public final EstadoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
+        return this;
     }
 
-    private final void setNombre(final String nombre) {
+    public final EstadoEntity setNombre(final String nombre) {
         this.nombre = UtilText.applyTrim(nombre);
+        return this;
     }
 
-    private void setDescripcion(final String descripcion) {
+    public EstadoEntity setDescripcion(final String descripcion) {
         this.descripcion = UtilText.applyTrim(descripcion);
+        return this;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    private final void setTipoEstado(final TipoEstadoEntity tipoEstado) {
-        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.getDefaultObject());
+    private final EstadoEntity setTipoEstado(final TipoEstadoEntity tipoEstado) {
+        this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.create());
+        return this;
     }
 
     public final UUID getIdentificador() {
@@ -65,7 +68,7 @@ public final class EstadoEntity {
         return tipoEstado;
     }
 
-    public static EstadoEntity getDefaultObject (){
-        return DEFAULT_OBJECT;
+    public static EstadoEntity create (){
+        return new EstadoEntity();
     }
 }
