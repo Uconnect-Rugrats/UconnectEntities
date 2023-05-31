@@ -13,7 +13,7 @@ public final class ComentarioEntity {
     private UUID identificador;
     private PublicacionEntity publicacion;
     private ComentarioEntity comentarioPadre;
-    private LocalDateTime fechaPublicacion;
+    private LocalDateTime fechaComentario;
     private ParticipanteGrupoEntity autor;
     private String contenido;
     private EstadoEntity estado;
@@ -29,7 +29,7 @@ public final class ComentarioEntity {
         setIdentificador(UtilUUID.getDefaultValue());
         setPublicacion(PublicacionEntity.create());
         setComentarioPadre(PADRE);
-        setFechaPublicacion(UtilDate.getDefaultValue());
+        setFechaComentario(UtilDate.getDefaultValue());
         setAutor(ParticipanteGrupoEntity.create());
         setContenido(UtilText.getDefaultValue());
         setEstado(EstadoEntity.create());
@@ -41,7 +41,7 @@ public final class ComentarioEntity {
         setIdentificador(identificador);
         setPublicacion(publicacion);
         setComentarioPadre(comentarioPadre);
-        setFechaPublicacion(fechaPublicacion);
+        setFechaComentario(fechaPublicacion);
         setAutor(autor);
         setContenido(contenido);
         setEstado(estado);
@@ -78,8 +78,8 @@ public final class ComentarioEntity {
     	return this;
     }
 
-	public ComentarioEntity setFechaPublicacion(final LocalDateTime fechaPublicacion) {
-        this.fechaPublicacion = UtilDate.getDefault(fechaPublicacion);
+	public ComentarioEntity setFechaComentario(final LocalDateTime fechaPublicacion) {
+        this.fechaComentario = UtilDate.getDefault(fechaPublicacion);
         return this;
     }
 
@@ -110,8 +110,8 @@ public final class ComentarioEntity {
         return comentarioPadre;
     }
 
-    public LocalDateTime getFechaPublicacion() {
-        return fechaPublicacion;
+    public LocalDateTime getFechaComentario() {
+        return fechaComentario;
     }
 
     public ParticipanteGrupoEntity getAutor() {
@@ -124,6 +124,10 @@ public final class ComentarioEntity {
 
     public EstadoEntity getEstado() {
         return estado;
+    }
+    
+    public boolean getTienePadre() {
+    	return tienePadre;
     }
 
     public static final ComentarioEntity create(){
