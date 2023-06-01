@@ -31,27 +31,27 @@ public final class ParticipanteGrupoEntity {
         setEstado(estado);
     }
 
-    private ParticipanteGrupoEntity setPuedePublicar(final Boolean puedePublicar) {
+    public ParticipanteGrupoEntity setPuedePublicar(final Boolean puedePublicar) {
         this.puedePublicar = UtilBoolean.getDefault(puedePublicar);
         return this;
     }
 
-    private ParticipanteGrupoEntity setIdentificador(final UUID identificador) {
+    public ParticipanteGrupoEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
         return this;
     }
 
-    private ParticipanteGrupoEntity setParticipante(final ParticipanteEntity participante) {
+    public ParticipanteGrupoEntity setParticipante(final ParticipanteEntity participante) {
         this.participante = UtilObject.getDefault(participante, ParticipanteEntity.create());
         return this;
     }
 
-    private ParticipanteGrupoEntity setGrupo(final GrupoEntity grupo) {
+    public ParticipanteGrupoEntity setGrupo(final GrupoEntity grupo) {
         this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
         return this;
     }
 
-    private ParticipanteGrupoEntity setEstado(final EstadoEntity estado) {
+    public ParticipanteGrupoEntity setEstado(final EstadoEntity estado) {
         this.estado = UtilObject.getDefault(estado, EstadoEntity.create());
         return this;
     }

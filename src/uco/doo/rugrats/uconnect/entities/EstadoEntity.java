@@ -51,7 +51,7 @@ public final class EstadoEntity {
         return descripcion;
     }
 
-    private final EstadoEntity setTipoEstado(final TipoEstadoEntity tipoEstado) {
+    public final EstadoEntity setTipoEstado(final TipoEstadoEntity tipoEstado) {
         this.tipoEstado = UtilObject.getDefault(tipoEstado, TipoEstadoEntity.create());
         return this;
     }
