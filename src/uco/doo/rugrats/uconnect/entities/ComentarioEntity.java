@@ -131,6 +131,6 @@ public final class ComentarioEntity {
     }
 
     public static final ComentarioEntity create(){
-        return DEFAULT_OBJECT;
+        return new  ComentarioEntity();
     }
 }
