@@ -126,10 +126,6 @@ public final class ComentarioEntity {
         return estado;
     }
     
-    public boolean getTienePadre() {
-    	return tienePadre;
-    }
-
     public static final ComentarioEntity create(){
         return new  ComentarioEntity();
     }
