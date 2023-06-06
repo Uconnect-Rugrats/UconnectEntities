@@ -10,7 +10,6 @@ import java.util.UUID;
 
 public final class PublicacionEntity {
     private UUID identificador;
-    private GrupoEntity grupo;
     private ParticipanteGrupoEntity autor;
     private LocalDateTime fechaPublicacion;
     private String titulo;
@@ -21,7 +20,6 @@ public final class PublicacionEntity {
     private PublicacionEntity() {
         super();
         setIdentificador(UtilUUID.getDefaultValue());
-        setGrupo(GrupoEntity.create());
         setAutor(ParticipanteGrupoEntity.create());
         setFechaPublicacion(UtilDate.getDefaultValue());
         setTitulo(UtilText.getDefaultValue());
@@ -29,10 +27,9 @@ public final class PublicacionEntity {
         setEstado(EstadoEntity.create());
     }
 
-    public PublicacionEntity(final UUID identificador, final GrupoEntity grupo, final ParticipanteGrupoEntity autor, final LocalDateTime fechaPublicacion, final String titulo, final String contenido, final EstadoEntity estado) {
+    public PublicacionEntity( UUID identificador, ParticipanteGrupoEntity autor, LocalDateTime fechaPublicacion, String titulo, String contenido, EstadoEntity estado) {
         super();
         setIdentificador(identificador);
-        setGrupo(grupo);
         setAutor(autor);
         setFechaPublicacion(fechaPublicacion);
         setTitulo(titulo);
@@ -42,11 +39,6 @@ public final class PublicacionEntity {
 
     public PublicacionEntity setIdentificador(final UUID identificador) {
         this.identificador = UtilUUID.getDefault(identificador);
-        return this;
-    }
-
-    public PublicacionEntity setGrupo(final GrupoEntity grupo) {
-        this.grupo = UtilObject.getDefault(grupo, GrupoEntity.create());
         return this;
     }
 
@@ -79,9 +71,6 @@ public final class PublicacionEntity {
         return identificador;
     }
 
-    public GrupoEntity getGrupo() {
-        return grupo;
-    }
 
     public ParticipanteGrupoEntity getAutor() {
         return autor;
