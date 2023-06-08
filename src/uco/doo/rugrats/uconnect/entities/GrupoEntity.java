@@ -1,5 +1,6 @@
 package uco.doo.rugrats.uconnect.entities;
 
+import uco.doo.rugrats.uconnect.utils.UtilBoolean;
 import uco.doo.rugrats.uconnect.utils.UtilObject;
 import uco.doo.rugrats.uconnect.utils.UtilText;
 import uco.doo.rugrats.uconnect.utils.UtilUUID;
@@ -11,6 +12,7 @@ public final class GrupoEntity {
     private EstructuraEntity estructura;
     private String nombre;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
 
     private GrupoEntity() {
         super();
@@ -18,14 +20,16 @@ public final class GrupoEntity {
         setEstructura(EstructuraEntity.create());
         setNombre(UtilText.getDefaultValue());
         setEstado(EstadoEntity.create());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public GrupoEntity(final UUID identificador, final EstructuraEntity estructura, final String nombre, final EstadoEntity estado) {
+    public GrupoEntity(final UUID identificador, final EstructuraEntity estructura, final String nombre, final EstadoEntity estado, final boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setEstructura(estructura);
         setNombre(nombre);
         setEstado(estado);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     public GrupoEntity setIdentificador(final UUID identificador) {
@@ -67,4 +71,13 @@ public final class GrupoEntity {
     public static GrupoEntity create(){
         return new GrupoEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public GrupoEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }

@@ -1,5 +1,6 @@
 package uco.doo.rugrats.uconnect.entities;
 
+import uco.doo.rugrats.uconnect.utils.UtilBoolean;
 import uco.doo.rugrats.uconnect.utils.UtilDate;
 import uco.doo.rugrats.uconnect.utils.UtilObject;
 import uco.doo.rugrats.uconnect.utils.UtilText;
@@ -15,6 +16,7 @@ public final class PublicacionEntity {
     private String titulo;
     private String contenido;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
 
 
     private PublicacionEntity() {
@@ -25,9 +27,10 @@ public final class PublicacionEntity {
         setTitulo(UtilText.getDefaultValue());
         setContenido(UtilText.getDefaultValue());
         setEstado(EstadoEntity.create());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public PublicacionEntity( UUID identificador, ParticipanteGrupoEntity autor, LocalDateTime fechaPublicacion, String titulo, String contenido, EstadoEntity estado) {
+    public PublicacionEntity( UUID identificador, ParticipanteGrupoEntity autor, LocalDateTime fechaPublicacion, String titulo, String contenido, EstadoEntity estado,boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setAutor(autor);
@@ -35,6 +38,7 @@ public final class PublicacionEntity {
         setTitulo(titulo);
         setContenido(contenido);
         setEstado(estado);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     public PublicacionEntity setIdentificador(final UUID identificador) {
@@ -95,4 +99,13 @@ public final class PublicacionEntity {
     public static final PublicacionEntity create(){
         return new PublicacionEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public PublicacionEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }

@@ -1,5 +1,6 @@
 package uco.doo.rugrats.uconnect.entities;
 
+import uco.doo.rugrats.uconnect.utils.UtilBoolean;
 import uco.doo.rugrats.uconnect.utils.UtilObject;
 import uco.doo.rugrats.uconnect.utils.UtilUUID;
 
@@ -9,6 +10,7 @@ public final class ParticipanteEntity {
     private UUID identificador;
     private PersonaEntity persona;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
 
 
     private ParticipanteEntity(){
@@ -16,13 +18,15 @@ public final class ParticipanteEntity {
         setIdentificador(UtilUUID.getDefaultValue());
         setPersona(PersonaEntity.create());
         setEstado(EstadoEntity.create());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public ParticipanteEntity(final UUID identificador, final PersonaEntity persona, final EstadoEntity estado){
+    public ParticipanteEntity(final UUID identificador, final PersonaEntity persona, final EstadoEntity estado, final boolean estaEstadoRealActivo){
         super();
         setIdentificador(identificador);
         setPersona(persona);
         setEstado(estado);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     public ParticipanteEntity setIdentificador(final UUID identificador) {
@@ -55,4 +59,13 @@ public final class ParticipanteEntity {
     public static ParticipanteEntity create(){
         return new ParticipanteEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public ParticipanteEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }

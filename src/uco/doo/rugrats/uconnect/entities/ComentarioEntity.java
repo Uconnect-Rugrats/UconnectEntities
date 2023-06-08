@@ -17,9 +17,10 @@ public final class ComentarioEntity {
     private ParticipanteGrupoEntity autor;
     private String contenido;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
     private boolean tienePadre;
     private static final String UUID_PADRE = "";
-    private static final ComentarioEntity PADRE = new ComentarioEntity(UtilUUID.generateUUIDFromString(UUID_PADRE),PublicacionEntity.create(),null,UtilDate.getDefaultValue(),ParticipanteGrupoEntity.create(),UtilText.getDefaultValue(),EstadoEntity.create(),UtilBoolean.getDefaultValue());
+    private static final ComentarioEntity PADRE = new ComentarioEntity(UtilUUID.generateUUIDFromString(UUID_PADRE),PublicacionEntity.create(),null,UtilDate.getDefaultValue(),ParticipanteGrupoEntity.create(),UtilText.getDefaultValue(),EstadoEntity.create(),UtilBoolean.getDefaultValue(),UtilBoolean.getDefaultValue());
 
 
     public static final ComentarioEntity DEFAULT_OBJECT = new ComentarioEntity();
@@ -34,9 +35,10 @@ public final class ComentarioEntity {
         setContenido(UtilText.getDefaultValue());
         setEstado(EstadoEntity.create());
         setTienePadre(UtilBoolean.getDefaultValue());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public ComentarioEntity( UUID identificador, PublicacionEntity publicacion, ComentarioEntity comentarioPadre, LocalDateTime fechaPublicacion, ParticipanteGrupoEntity autor, String contenido, EstadoEntity estado, boolean tienePadre) {
+    public ComentarioEntity( UUID identificador, PublicacionEntity publicacion, ComentarioEntity comentarioPadre, LocalDateTime fechaPublicacion, ParticipanteGrupoEntity autor, String contenido, EstadoEntity estado, boolean tienePadre, boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setPublicacion(publicacion);
@@ -46,6 +48,7 @@ public final class ComentarioEntity {
         setContenido(contenido);
         setEstado(estado);
         setTienePadre(tienePadre);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
     
 
@@ -129,4 +132,13 @@ public final class ComentarioEntity {
     public static final ComentarioEntity create(){
         return new  ComentarioEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public ComentarioEntity setEstaEstadoRealActivo(boolean estadoReal) {
+		this.estaEstadoRealActivo = estadoReal;
+		return this;
+	}
 }

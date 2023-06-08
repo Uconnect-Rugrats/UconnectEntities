@@ -1,5 +1,6 @@
 package uco.doo.rugrats.uconnect.entities;
 
+import uco.doo.rugrats.uconnect.utils.UtilBoolean;
 import uco.doo.rugrats.uconnect.utils.UtilDate;
 import uco.doo.rugrats.uconnect.utils.UtilObject;
 import uco.doo.rugrats.uconnect.utils.UtilUUID;
@@ -14,6 +15,7 @@ public final class ReaccionEntity {
     private LocalDateTime fechaReaccion;
     private TipoReaccionEntity tipo;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
 
     private ReaccionEntity() {
         super();
@@ -23,9 +25,10 @@ public final class ReaccionEntity {
         setFechaReaccion(UtilDate.getDefaultValue());
         setTipo(TipoReaccionEntity.create());
         setEstado(EstadoEntity.create());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public ReaccionEntity(final UUID identificador, final PublicacionEntity publicacion, final ParticipanteGrupoEntity autor, final LocalDateTime fechaReaccion, final TipoReaccionEntity tipo, final EstadoEntity estado) {
+    public ReaccionEntity( UUID identificador, PublicacionEntity publicacion, ParticipanteGrupoEntity autor, LocalDateTime fechaReaccion, TipoReaccionEntity tipo, EstadoEntity estado,boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setPublicacion(publicacion);
@@ -33,6 +36,7 @@ public final class ReaccionEntity {
         setFechaReaccion(fechaReaccion);
         setTipo(tipo);
         setEstado(estado);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     public ReaccionEntity setIdentificador(final UUID identificador) {
@@ -92,4 +96,13 @@ public final class ReaccionEntity {
     public static final ReaccionEntity create(){
         return new ReaccionEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public ReaccionEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }

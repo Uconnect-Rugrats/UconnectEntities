@@ -13,11 +13,12 @@ public final class EstructuraEntity {
     private EstructuraEntity estructuraPadre;
     private String nombre;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
     private boolean tienePadre;
     private static final String UUID_PADRE = "";
-    private static final EstructuraEntity PADRE = new EstructuraEntity(UtilUUID.generateUUIDFromString(UUID_PADRE),OrganizacionEntity.create(),null,UtilText.getDefaultValue(),EstadoEntity.create(),UtilBoolean.getDefaultValue());
+    private static final EstructuraEntity PADRE = new EstructuraEntity(UtilUUID.generateUUIDFromString(UUID_PADRE),OrganizacionEntity.create(),null,UtilText.getDefaultValue(),EstadoEntity.create(),UtilBoolean.getDefaultValue(),UtilBoolean.getDefaultValue());
 
-    public EstructuraEntity(UUID identificador, OrganizacionEntity organizacion, EstructuraEntity estructuraPadre,String nombre, EstadoEntity estado, boolean tienePadre) {
+    public EstructuraEntity(UUID identificador, OrganizacionEntity organizacion, EstructuraEntity estructuraPadre,String nombre, EstadoEntity estado, boolean tienePadre, boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setOrganizacion(organizacion);
@@ -25,6 +26,7 @@ public final class EstructuraEntity {
         setNombre(nombre);
         setEstado(estado);
         setTienePadre(tienePadre);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     private EstructuraEntity() {
@@ -35,6 +37,7 @@ public final class EstructuraEntity {
         setNombre(UtilText.getDefaultValue());
         setEstado(EstadoEntity.create());
         setTienePadre(UtilBoolean.getDefaultValue());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
     
     public final boolean isTienePadre() {
@@ -98,4 +101,13 @@ public final class EstructuraEntity {
     public static EstructuraEntity create(){
         return new EstructuraEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public EstructuraEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }

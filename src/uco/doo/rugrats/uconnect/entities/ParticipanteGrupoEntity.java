@@ -12,6 +12,7 @@ public final class ParticipanteGrupoEntity {
     private GrupoEntity grupo;
     private Boolean puedePublicar;
     private EstadoEntity estado;
+    private boolean estaEstadoRealActivo;
 
 
     private ParticipanteGrupoEntity() {
@@ -20,15 +21,17 @@ public final class ParticipanteGrupoEntity {
         setPuedePublicar(UtilBoolean.getDefaultValue());
         setGrupo(GrupoEntity.create());
         setEstado(EstadoEntity.create());
+        setEstaEstadoRealActivo(UtilBoolean.getDefaultValue());
     }
 
-    public ParticipanteGrupoEntity(final UUID identificador, final ParticipanteEntity participante, final Boolean puedePublicar, final GrupoEntity grupo, final EstadoEntity estado) {
+    public ParticipanteGrupoEntity(final UUID identificador, final ParticipanteEntity participante, final Boolean puedePublicar, final GrupoEntity grupo, final EstadoEntity estado, boolean estaEstadoRealActivo) {
         super();
         setIdentificador(identificador);
         setParticipante(participante);
         setPuedePublicar(puedePublicar);
         setGrupo(grupo);
         setEstado(estado);
+        setEstaEstadoRealActivo(estaEstadoRealActivo);
     }
 
     public ParticipanteGrupoEntity setPuedePublicar(final Boolean puedePublicar) {
@@ -79,4 +82,13 @@ public final class ParticipanteGrupoEntity {
     public static ParticipanteGrupoEntity create(){
         return new ParticipanteGrupoEntity();
     }
+
+	public boolean isEstaEstadoRealActivo() {
+		return estaEstadoRealActivo;
+	}
+
+	public ParticipanteGrupoEntity setEstaEstadoRealActivo(boolean estaEstadoRealActivo) {
+		this.estaEstadoRealActivo = estaEstadoRealActivo;
+		return this;
+	}
 }
